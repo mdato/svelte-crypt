@@ -1,4 +1,5 @@
 <script>
+  // @ts-nocheck
 
   let coins = [];
   let headings = ["#", "Coin", "Price", "Price Change", "24h Volume"];
@@ -24,12 +25,11 @@
         coin.symbol.toLowerCase().includes(value)
     );
   };
-
 </script>
 
-<main class="container p-4"> 
-
+<main class="container p-4">
   <h1 class="text-center">Vite + Svelte + Crypto</h1>
+
   <input
     type="text"
     class="form-control bg-dark text-white rounded-0 border-0 my-4"
@@ -72,13 +72,14 @@
               ? "text-primary"
               : "text-danger"}
           >
-            {coin.price_change_percentage_24h > 0 ? "🔼 " + coin.price_change_percentage_24h.toLocaleString() : "🔻 " + coin.price_change_percentage_24h.toLocaleString() } %
+            {coin.price_change_percentage_24h > 0
+              ? "🔼 " + coin.price_change_percentage_24h.toLocaleString()
+              : "🔻 " + coin.price_change_percentage_24h.toLocaleString()} %
           </td>
           <td>
             <div class="volume">
               €{coin.total_volume.toLocaleString()}
             </div>
-            
           </td>
         </tr>
       {/each}
