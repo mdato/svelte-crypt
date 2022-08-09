@@ -1,8 +1,10 @@
 <script>
   // @ts-nocheck
 
+  import {onMount} from "svelte";
+
   let coins = [];
-  let headings = ["#", "Coin", "Price", "Price Change", "24h Volume"];
+  let headings = ["#", "Coin", "Price", "Change %", "24h Vol"];
   let searching = "";
   let filters = [];
 
@@ -18,7 +20,11 @@
   };
   getCrypto();
 
-  const searchCoin = (value) => {
+  onMount(()=>{
+    ref.focus()
+  })
+
+  const searchCrypto = (value) => {
     filters = coins.filter(
       (coin) =>
         coin.name.toLowerCase().includes(value) ||
@@ -34,7 +40,7 @@
     type="text"
     class="form-control bg-dark text-white rounded-0 border-0 my-4"
     bind:value={searching}
-    on:keyup={({ target: { value } }) => searchCoin(value)}
+    on:keyup={({ target: { value } }) => searchCrypto(value)}
     bind:this={ref}
     placeholder="Search crypto..."
   />
